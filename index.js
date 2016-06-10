@@ -20,11 +20,11 @@ $("#questions-area").on("click", ".one-question", function () {
     $id_question = $(this).find("span").text();
 
     showAnswer($id_question);
-
-    $("#popup").css('visibility', 'hidden')
 });
 
-$("#questions-area").contextmenu(function (event) {
+$("#questions-area").on("contextmenu", ".one-question", function (event) {
+    $(this).trigger("click");
+    
     event.preventDefault();
     $clickedX = event.pageX;
     $clickedY = event.pageY;
@@ -32,8 +32,6 @@ $("#questions-area").contextmenu(function (event) {
     $("#popup").css('visibility', 'visible');
     $("#popup").css("left", $clickedX + "px");
     $("#popup").css("top", $clickedY + "px");
-
-    $clickedQuestion.next().trigger("click");
 });
 $("#popup").click(function () {
     $("#popup").css('visibility', 'hidden')
@@ -62,8 +60,6 @@ $('.one-tag').click(function () {
     showQuestions($(this).text());
 
     $("#answer-area").empty();
-
-    $("#popup").css('visibility', 'hidden')
 });
 
 function showQuestions(str) {
@@ -79,3 +75,6 @@ function showQuestions(str) {
     xmlhttp.open("GET", "getquestions.php?tag=" + str, true);
     xmlhttp.send();
 }
+$("*").click(function(){
+     $("#popup").css('visibility', 'hidden')
+});
