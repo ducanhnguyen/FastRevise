@@ -20,9 +20,24 @@ $("#questions-area").on("click", ".one-question", function () {
     $id_question = $(this).find("span").text();
 
     showAnswer($id_question);
+
+    $("#popup").css('visibility', 'hidden')
 });
 
+$("#questions-area").contextmenu(function (event) {
+    event.preventDefault();
+    $clickedX = event.pageX;
+    $clickedY = event.pageY;
 
+    $("#popup").css('visibility', 'visible');
+    $("#popup").css("left", $clickedX + "px");
+    $("#popup").css("top", $clickedY + "px");
+
+    $clickedQuestion.next().trigger("click");
+});
+$("#popup").click(function () {
+    $("#popup").css('visibility', 'hidden')
+});
 function showAnswer($id_question) {
     if (window.XMLHttpRequest) {
         // code for IE7+, Firefox, Chrome, Opera, Safari
@@ -47,6 +62,8 @@ $('.one-tag').click(function () {
     showQuestions($(this).text());
 
     $("#answer-area").empty();
+
+    $("#popup").css('visibility', 'hidden')
 });
 
 function showQuestions(str) {

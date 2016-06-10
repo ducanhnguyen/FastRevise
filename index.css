@@ -74,3 +74,13 @@ body{
 .answer{
     padding: 10px;
 }
+#popup{
+    position: absolute;
+    width: auto;
+    height: auto;
+    padding: 5px;
+    background-color: white;
+    border: 1px solid #999999;
+    cursor: pointer;
+    visibility: hidden;
+}
